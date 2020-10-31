@@ -3,9 +3,7 @@ import { AiFillDislike, AiFillLike } from "react-icons/ai";
 import { FaCommentDots } from "react-icons/fa";
 import styled, { ThemeContext } from 'styled-components';
 import WaveSurfer from "wavesurfer.js";
-import TimelinePlugin from 'wavesurfer.js/dist/plugin/wavesurfer.timeline.min.js';
-import MinimapPlugin from 'wavesurfer.js/dist/plugin/wavesurfer.minimap.min.js';
-import { Button, ButtonComment, ButtonDesLike, ButtonLike, ButtonPlay, ButtonPrimary } from "./Button";
+import { ButtonComment, ButtonDesLike, ButtonLike, ButtonPlay } from "./Button";
 
 const formWaveSurferOptions = ref => ({
     container: ref,
@@ -16,15 +14,15 @@ const formWaveSurferOptions = ref => ({
     barRadius: 3,
     responsive: true,
     height: 150,
-    // If true, normalize by the maximum peak instead of 1.0.
     normalize: true,
-    // Use the PeakCache to improve rendering speed of large waveforms.
     partialRender: true
 });
 
 export default function Waveform({ url }) {
+    
     const waveformRef = useRef(null);
     const wavesurfer = useRef(null);
+
     const [playing, setPlay] = useState(false);
     const [volume, setVolume] = useState(0.5);
     const [mounted, setMounted] = useState(false)
@@ -43,8 +41,9 @@ export default function Waveform({ url }) {
             height: 80,
             progressColor: theme.colors.primaryColor,
             responsive: true,
-            waveColor: theme.colors.secundaryTextColor,
-            cursorColor: 'transparent',
+            waveColor: "#222222",
+            cursorColor: 'transparent'
+
         });
         wavesurfer.current.load(url);
 
