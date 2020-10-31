@@ -48,4 +48,5 @@ const ContainerMain = styled.div`
 const Wrapper = styled.div`
     width: 100%;
     margin: 16px 16px 16px 16px;
+    min-height: 75vh;
 `;
