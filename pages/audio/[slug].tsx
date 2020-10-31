@@ -12,24 +12,23 @@ function Audio({ posts }) {
     const router = useRouter()
 
     return (
-        <Main>
-            <Article>
-                {posts && posts.map(post => (
-                    <>
+        posts && posts.map(post => (
+            <Main key={ post.id}  title={post.title}>
+                <Article>
                         <TitlePage>{post.titleAudio}</TitlePage>
                         <Paragraph>
                             {post.descAudio}
                         </Paragraph>
 
-                        { post.audios.map((audio, index) => {
-                            console.log("url ===> " , `https://api.zapaudios.com${audio.url}`)
-                            return (<Waveform key={index} url={`https://api.zapaudios.com${audio.url}`} />)}) }
+                        {post.audios.map((audio, index) => {
+                            console.log("url ===> ", `https://api.zapaudios.com${audio.url}`)
+                            return (<Waveform key={index} url={`https://api.zapaudios.com${audio.url}`} />)
+                        })}
 
                         <Button onClick={() => router.back()}>Voltar</Button>
-                    </>
-                ))}
-            </Article>
-        </Main>
+                </Article>
+            </Main>
+        ))
     )
 }
 

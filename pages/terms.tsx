@@ -3,7 +3,7 @@ import Main from '../components/layout/Main'
 
 function terms() {
     return (
-        <Main>
+        <Main title="Terms of Service">
             
         </Main>
     )

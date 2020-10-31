@@ -63,7 +63,7 @@ export default function Waveform({ url }) {
         });
 
         wavesurfer.current.on("interaction", function () {
-            if(wavesurfer.current.isPlaying())
+            if (wavesurfer.current.isPlaying())
                 setPlay(false);
         });
 
@@ -88,6 +88,20 @@ export default function Waveform({ url }) {
     return (
         <div>
             <Wave id="waveform" ref={waveformRef} />
+            {mounted && <ContainerVolume>
+
+                <label htmlFor="volume">Volume</label>
+                <input
+                    type="range"
+                    id="volume"
+                    name="volume"
+                    min="0.01"
+                    max="1"
+                    step=".025"
+                    onChange={onVolumeChange}
+                    defaultValue={volume}
+                />
+            </ContainerVolume> }
             <div className="controls">
                 {mounted ?
                     <ContainerActions>
@@ -108,25 +122,23 @@ export default function Waveform({ url }) {
 
                     <LoadingText> Loading...</LoadingText>
                 }
-
-                <input
-                    type="range"
-                    id="volume"
-                    name="volume"
-                    // waveSurfer recognize value of `0` same as `1`
-                    //  so we need to set some zero-ish value for silence
-                    min="0.01"
-                    max="1"
-                    step=".025"
-                    onChange={onVolumeChange}
-                    defaultValue={volume}
-                />
-                <label htmlFor="volume">Volume</label>
             </div>
         </div>
     );
 }
 
+const ContainerVolume = styled.div`
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
+    label {
+        font-weight: bold;
+        margin-bottom: 8px;
+    }
+`
 
 export const Wave = styled.div`
   margin: 26px 0px; 

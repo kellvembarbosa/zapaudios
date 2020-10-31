@@ -7,7 +7,6 @@ import styled from 'styled-components';
 import { down } from 'styled-breakpoints'
 
 function Home({ posts }) {
-  console.log('posts ==========>', posts)
   return (
     <Main>
       <GridContainer>
@@ -27,17 +26,6 @@ const GridContainer = styled.div`
     ". . . ."
     ". . . .";
 
-    /* ${down("md")}{
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-template-rows: 1fr 1fr 1fr;
-      gap: 24px 24px;
-      grid-template-areas:
-        " . . . "
-        " . . . "
-        " . . . ";
-    } */
-
     ${down("md")}{
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -51,7 +39,7 @@ const GridContainer = styled.div`
 `;
 
 Home.getInitialProps = async (ctx) => {
-  const response = await API.get('/posts')
+  const response = await API.get('/posts?_sort=created_at:DESC')
   if (response.status === 200 && response.data) {
     const posts = response.data
     return { posts }
