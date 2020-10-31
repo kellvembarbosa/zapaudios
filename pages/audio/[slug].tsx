@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 import dynamic from "next/dynamic";
 import { API } from '../../services/api';
 import { PostObject } from '../../components/Card/Card';
+import Head from 'next/head';
 const Waveform = dynamic(() => import('../../components/WaveForm'), { ssr: false, });
 
 function Audio({ posts }) {
@@ -13,7 +14,7 @@ function Audio({ posts }) {
 
     return (
         posts && posts.map(post => (
-            <Main key={ post.id}  title={post.title}>
+            <Main key={ post.id}  title={post.titleAudio}>
                 <Article>
                         <TitlePage>{post.titleAudio}</TitlePage>
                         <Paragraph>
