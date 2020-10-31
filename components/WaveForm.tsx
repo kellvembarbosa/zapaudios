@@ -41,7 +41,6 @@ export default function Waveform({ url }) {
             container: '#waveform',
             backend: 'WebAudio',
             height: 80,
-            autoPlay: true,
             progressColor: '#2D5BFF',
             responsive: true,
             waveColor: '#EFEFEF',
@@ -51,7 +50,7 @@ export default function Waveform({ url }) {
 
         wavesurfer.current.on("ready", function () {
             // https://wavesurfer-js.org/docs/methods.html
-            
+
             wavesurfer.current.play();
             setPlay(true);
 
@@ -63,7 +62,11 @@ export default function Waveform({ url }) {
             setMounted(true);
         });
 
-        //wavesurfer.current.on('ready', wavesurfer.current.play.bind(wavesurfer.current));
+        wavesurfer.current.on("interaction", function () {
+            if(wavesurfer.current.isPlaying())
+                setPlay(false);
+        });
+
         return () => wavesurfer.current.destroy();
     }, [url]);
 

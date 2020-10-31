@@ -47,7 +47,7 @@ export const ButtonComment = styled(ButtonLike)`
 
 export const ButtonPrimary = styled(Button)`
     background-color: ${({ theme }) => theme.colors.primaryColor};
-    color: ${({ theme }) => theme.colors.textColor}; 
+    color: #fff; // ${({ theme }) => theme.colors.textColor}; 
 `
 
 export const ButtonPlay = styled(Button)`
