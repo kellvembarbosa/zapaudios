@@ -15,4 +15,17 @@ export const Title = styled.div`
     font-size: 16px;
     font-weight: 600;
     flex: 1;
+    justify-content:center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    margin-bottom: 16px;
+`
+
+export const ContainerIcon = styled.div`
+    flex: 1;
+    min-height: 100px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
 `

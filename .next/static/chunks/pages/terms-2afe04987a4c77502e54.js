@@ -1,0 +1,1 @@
+_N_E=(window.webpackJsonp_N_E=window.webpackJsonp_N_E||[]).push([[18],{mQqT:function(n,t,w){"use strict";w.r(t);var _=w("nKUr"),o=(w("q1tI"),w("S1Th"));t.default=function(){return Object(_.jsx)(o.a,{})}},wEFd:function(n,t,w){(window.__NEXT_P=window.__NEXT_P||[]).push(["/terms",function(){return w("mQqT")}])}},[["wEFd",0,2,3,7,5,1,4,6]]]);

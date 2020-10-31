@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import styled from 'styled-components';
+import styled, { ThemeContext } from 'styled-components';
 import { themeState } from '../../recoils/atoms';
 import { changeMode } from '../../recoils/selectors';
 import Switch from "react-switch";
@@ -8,10 +8,12 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { down } from 'styled-breakpoints';
 import { AiFillFileZip, AiFillHome, AiFillQuestionCircle } from "react-icons/ai";
+import { BsSun, BsMoon } from "react-icons/bs"
 
 export default function Header() {
     const isDarkMode = useRecoilValue(themeState)
     const setDarkMode = useSetRecoilState(changeMode);
+    const theme = useContext(ThemeContext);
 
     return (
         <Container>
@@ -25,24 +27,45 @@ export default function Header() {
                             <AiFillHome size={24} /> Home
                         </MenuItem>
                     </Link>
-                    <Link href="/" passHref>
+                    <Link href="/terms" passHref>
                         <MenuItem>
                             <AiFillFileZip size={24} /> Terms of Service
                         </MenuItem>
                     </Link>
-                    <Link href="/" passHref>
+                    <Link href="/contato" passHref>
                         <MenuItem>
                             <AiFillQuestionCircle size={24} /> Contato
                         </MenuItem>
                     </Link>
                 </ContainerMenu>
                 <ContainerAvatar>
-                    <Switch onChange={() => setDarkMode(!isDarkMode)} checked={!isDarkMode} />
+                    <Switch
+                        onChange={() => setDarkMode(!isDarkMode)}
+                        onColor={theme.colors.textColor}
+                        offColor={theme.colors.textDarkColor}
+                        checked={!isDarkMode}
+                        offHandleColor={theme.colors.secundaryColor}
+                        onHandleColor={theme.colors.textDarkColor}
+                        uncheckedIcon={(<Icon>
+                            <BsSun
+                                color={theme.colors.switchSun} />
+                        </Icon>)}
+                        checkedIcon={(<Icon>
+                            <BsMoon color={theme.colors.switchMoon} />
+                        </Icon>
+                        )} />
                 </ContainerAvatar>
             </Wrapper>
         </Container>
     )
 }
+const Icon = styled.div`
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+`;
 
 const Container = styled.div`
     width: 100%;
@@ -84,8 +107,12 @@ const MenuItem = styled.a<{ isActive?: boolean }>`
         margin-bottom: 4px;
     }
 
-    :hover {
+    &:hover {
        color: ${({ theme }) => theme.colors.textColor};
+    }
+
+    &:active {
+        color: ${({ theme }) => theme.colors.textColor};
     }
 
     ${down('sm')}{

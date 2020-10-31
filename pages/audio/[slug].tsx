@@ -1,54 +1,66 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components';
 import { Button } from '../../components/Button';
 import Main from '../../components/layout/Main'
 import { useRouter } from 'next/router'
-import AudioSpectrum from 'react-audio-spectrum'
+import dynamic from "next/dynamic";
 import { API } from '../../services/api';
+import { PostObject } from '../../components/Card/Card';
+const Waveform = dynamic(() => import('../../components/WaveForm'), { ssr: false, });
 
-function Audio() {
+function Audio({ posts }) {
     const router = useRouter()
+
     return (
         <Main>
-            <audio id="audio-element"
-                src="https://api.zapaudios.com/uploads/chegou_o_ingresso_752dee0033.mp3"
-                autoPlay
-            >
-            </audio>
-            <AudioSpectrum
-                id="audio-canvas"
-                height={200}
-                width={300}
-                audioId={'audio-element'}
-                capColor={'red'}
-                capHeight={2}
-                meterWidth={2}
-                meterCount={512}
-                meterColor={[
-                    { stop: 0, color: '#f00' },
-                    { stop: 0.5, color: '#0CD7FD' },
-                    { stop: 1, color: 'red' }
-                ]}
-                gap={4}
-            />
-            <Button onClick={() => router.back()}>Back</Button>
+            <Article>
+                {posts && posts.map(post => (
+                    <>
+                        <TitlePage>{post.titleAudio}</TitlePage>
+                        <Paragraph>
+                            {post.descAudio}
+                        </Paragraph>
+
+                        {posts.map(audio => (<Waveform url={audio.url} />))}
+
+                        <Button onClick={() => router.back()}>Voltar</Button>
+                    </>
+                ))}
+            </Article>
         </Main>
     )
 }
 
+Audio.getInitialProps = async (ctx) => {
+
+    const { slug } = ctx.query
+
+    const response = await API.get(`/posts?slugAudio=${slug}`)
+    if (response.status === 200 && response.data.length > 0) {
+        const posts = response.data;
+        return { posts }
+    }
+
+    ctx.res.writeHead(301, { Location: '/' });
+    ctx.res.end();
+
+    return {}
+}
+
 export default Audio
 
+export const Article = styled.article`
 
-Audio.getInitialProps = async (ctx) => {
-    // const response = await API.get('/post?')
-    // if (response.status === 200 && response.data) {
-    //   const posts = response.data
-    //   return { posts }
-    // }
-  
-    return {}
-  }
+`;
 
-const Container = styled.div`
-  
+const TitlePage = styled.h1`
+  margin-bottom: 16px;
+  font-weight: bold;
+  font-size: 18px;
+`;
+
+const Paragraph = styled.p`
+  font-size: 14px;
+  color: ${({ theme }) => theme.colors.secundaryTextColor};
+  opacity: 0.7;
 `;

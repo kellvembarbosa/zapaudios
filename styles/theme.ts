@@ -13,7 +13,10 @@ export const DARK_THEME: DefaultTheme = {
         secundaryTextColor: "#fdfdfd",
 
         textDarkColor: "#000",
-        secundaryTextDarkColor: "#333"
+        secundaryTextDarkColor: "#333",
+        
+        switchSun: "#ffd700",
+        switchMoon: "#ffffff"
     },
 
     breakpoints: {
@@ -36,7 +39,10 @@ export const LIGHT_THEME: DefaultTheme = {
         secundaryTextColor: "#333",
 
         textDarkColor: "#fff",
-        secundaryTextDarkColor: "#fdfdfd"
+        secundaryTextDarkColor: "#fdfdfd",
+
+        switchSun: "#ffd700",
+        switchMoon: "#ffffff"
     },
 
     breakpoints: {

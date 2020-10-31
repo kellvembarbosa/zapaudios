@@ -14,14 +14,14 @@
     "next": "10.0.0",
     "next-cookies": "^2.0.3",
     "react": "17.0.1",
-    "react-audio-spectrum": "^0.1.0",
     "react-dom": "17.0.1",
     "react-icons": "^3.11.0",
     "react-switch": "^5.0.1",
     "recoil": "^0.1.1",
     "styled-breakpoints": "^8.1.2",
     "styled-components": "^5.2.1",
-    "styled-reset": "^4.3.0"
+    "styled-reset": "^4.3.0",
+    "wavesurfer.js": "^4.2.0"
   },
   "devDependencies": {
     "@types/node": "^14.14.6",

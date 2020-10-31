@@ -42,7 +42,7 @@ const GridContainer = styled.div`
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 1fr 1fr 1fr;
-      gap: 24px 24px;
+      gap: 18px 18px;
       grid-template-areas:
         " . . "
         " . . "
