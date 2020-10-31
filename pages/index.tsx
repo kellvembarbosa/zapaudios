@@ -28,13 +28,13 @@ const GridContainer = styled.div`
 
     ${down("md")}{
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       grid-template-rows: 1fr 1fr 1fr;
       gap: 18px 18px;
       grid-template-areas:
-        " . . "
-        " . . "
-        " . . ";
+        " . "
+        " . "
+        " . ";
     }
 `;
 
