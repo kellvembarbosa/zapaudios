@@ -21,7 +21,9 @@ function Audio({ posts }) {
                             {post.descAudio}
                         </Paragraph>
 
-                        { posts.map(audio => (<Waveform url={`https://www.zapaudios.com${audio.url}`} />)) }
+                        { post.audios.map((audio, index) => {
+                            console.log("url ===> " , `https://api.zapaudios.com${audio.url}`)
+                            return (<Waveform key={index} url={`https://api.zapaudios.com${audio.url}`} />)}) }
 
                         <Button onClick={() => router.back()}>Voltar</Button>
                     </>

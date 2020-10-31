@@ -29,7 +29,7 @@ export default function Waveform({ url }) {
     const [volume, setVolume] = useState(0.5);
     const [mounted, setMounted] = useState(false)
     const theme = useContext(ThemeContext);
-    
+
     useEffect(() => {
         setPlay(false);
 
@@ -62,7 +62,7 @@ export default function Waveform({ url }) {
 
         setTimeout(function () {
             setMounted(true);
-        }, 900)
+        }, 1000)
 
         return () => wavesurfer.current.destroy();
     }, [url]);
