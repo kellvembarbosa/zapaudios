@@ -77,12 +77,16 @@ export default function Waveform({ url }) {
 
     const onVolumeChange = e => {
         const { target } = e;
-        const newVolume = +target.value;
+        const newVolume = + target.value;
+        
+        if(newVolume === 0 )
+            wavesurfer.current.setVolume(0);
 
         if (newVolume) {
             setVolume(newVolume);
             wavesurfer.current.setVolume(newVolume || 1);
         }
+        
     };
 
     return (
@@ -95,7 +99,7 @@ export default function Waveform({ url }) {
                     type="range"
                     id="volume"
                     name="volume"
-                    min="0.01"
+                    min="0.00"
                     max="1"
                     step=".025"
                     onChange={onVolumeChange}
