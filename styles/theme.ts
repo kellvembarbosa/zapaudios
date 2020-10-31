@@ -13,7 +13,7 @@ export const DARK_THEME: DefaultTheme = {
         secundaryTextColor: "#fdfdfd",
 
         textDarkColor: "#000",
-        secundaryTextDarkColor: "#333",
+        secundaryTextDarkColor: "#222",
         
         switchSun: "#ffd700",
         switchMoon: "#ffffff"

@@ -41,9 +41,9 @@ export default function Waveform({ url }) {
             container: '#waveform',
             backend: 'WebAudio',
             height: 80,
-            progressColor: '#2D5BFF',
+            progressColor: theme.colors.primaryColor,
             responsive: true,
-            waveColor: '#EFEFEF',
+            waveColor: theme.colors.secundaryTextColor,
             cursorColor: 'transparent',
         });
         wavesurfer.current.load(url);
