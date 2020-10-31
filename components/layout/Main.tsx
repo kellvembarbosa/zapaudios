@@ -1,12 +1,21 @@
+import Head from 'next/head';
 import React, { useEffect } from 'react'
 import { down, up } from 'styled-breakpoints';
 import styled from 'styled-components';
 import Footer from './Footer';
 import Header from './Header';
 
-export default function Main({ children }) {
+interface MainProps {
+    children: React.ReactNode;  
+    title?: string;
+}
+
+export default function Main({ children, title } : MainProps) {
     return (
         <Container>
+            <Head>
+                <title> { title ? `${title} | Zap Áudios ` : `Zap Áudios - Áudios para WhatsApp e Telegram`}</title>
+            </Head>
             <Header />
             <Wrapper>
                 <ContainerMain>
