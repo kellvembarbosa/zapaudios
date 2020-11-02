@@ -49,10 +49,6 @@ export default function Waveform({ url }) {
 
         wavesurfer.current.on("ready", function () {
             // https://wavesurfer-js.org/docs/methods.html
-
-            wavesurfer.current.play();
-            setPlay(true);
-
             // make sure object stillavailable when file loaded
             if (wavesurfer.current) {
                 wavesurfer.current.setVolume(volume);
