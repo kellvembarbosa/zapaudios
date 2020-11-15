@@ -32,6 +32,7 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    min-height: 100vh;
 `;
 
 const ContainerMain = styled.div`
@@ -48,5 +49,6 @@ const ContainerMain = styled.div`
 const Wrapper = styled.div`
     width: 100%;
     margin: 16px 16px 16px 16px;
-    min-height: 75vh;
+    display: flex;
+    flex: 1;
 `;

@@ -8,27 +8,23 @@ import { API } from '../../services/api';
 // import { PostObject } from '../../components/Card/Card';
 import Head from 'next/head';
 import Axios from 'axios';
+import { AudioObject } from '../../components/Card/Card';
 const Waveform = dynamic(() => import('../../components/WaveForm'), { ssr: false, });
 
-function Audio({ posts }) {
+function Audio({ post }) {
     const router = useRouter()
-    const title = posts[0]?.data.title.iv
     return (
-        <Main title={title} >
-            { posts && posts.map((post, index) => (
-                <Article key={post.id} >
-                    <TitlePage>{post.data.title.iv}</TitlePage>
-                    <Paragraph>
-                        {post.data.descricao.iv}
-                    </Paragraph>
+        <Main title={post.title} >
+            <Article>
+                <TitlePage>{post.title}</TitlePage>
+                <Paragraph>
+                    {post.description}
+                </Paragraph>
 
-                    { post.data.audios.iv.map((audio, index) => {
-                        return (<Waveform key={index} url={`https://painel.spinui.com/api/assets/zapaudios/${audio}`} />)
-                    })}
+                <Waveform url={`https://painel.zapaudios.com/assets/${post.audio_file}`} />
 
-                    <Button onClick={() => router.back()}>Voltar</Button>
-                </Article>
-            ))}
+                <Button onClick={() => router.back()}>Voltar</Button>
+            </Article>
         </Main>
     )
 }
@@ -37,13 +33,11 @@ Audio.getInitialProps = async (ctx) => {
 
     const { slug } = ctx.query
 
-    const response = await Axios.get(`https://painel.spinui.com/api/content/zapaudios/audios?$filter=data/slug/iv%20eq%20%27${slug}%27`)
+    const response = await API.get(`/items/audios/${slug}`)
 
-    console.log("====>", response.data)
-
-    if (response.status === 200 && response.data.total > 0) {
-        const posts = response.data.items
-        return { posts }
+    if (response.status === 200 && response.data) {
+        const post = response.data.data as AudioObject
+        return { post }
     }
     // const response = await API.get(`/posts?slugAudio=${slug}`)
     // if (response.status === 200 && response.data.length > 0) {
