@@ -19,23 +19,13 @@ function Home({ posts }) {
 
 const GridContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  gap: 24px 24px;
-  grid-template-areas:
-    ". . . ."
-    ". . . ."
-    ". . . .";
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); /* see notes below */
+  grid-gap: 1em;
 
     ${down("md")}{
       display: grid;
-      grid-template-columns: 1fr;
-      grid-template-rows: 1fr 1fr 1fr;
-      gap: 18px 18px;
-      grid-template-areas:
-        " . "
-        " . "
-        " . ";
+      grid-template-columns: repeat(auto-fill, minmax(100%, 1fr)); /* see notes below */
+      grid-gap: 1em;
     }
 `;
 
