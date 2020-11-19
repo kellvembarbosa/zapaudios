@@ -13,15 +13,22 @@ const Waveform = dynamic(() => import('../../components/WaveForm'), { ssr: false
 
 function Audio({ post }) {
     const router = useRouter()
+    const {
+        title, acf: {
+            description,
+            audio_file
+        } } = post
+
+        console.log("audio_file ===>", audio_file)
     return (
-        <Main title={post.title} >
+        <Main title={title.rendered} >
             <Article>
-                <TitlePage>{post.title}</TitlePage>
+                <TitlePage>{title.rendered}</TitlePage>
                 <Paragraph>
-                    {post.description}
+                    {description}
                 </Paragraph>
 
-                <Waveform url={`https://painel.zapaudios.com/assets/${post.audio_file}`} />
+                <Waveform url={audio_file} />
 
                 <Button onClick={() => router.back()}>Voltar</Button>
             </Article>
@@ -33,17 +40,12 @@ Audio.getInitialProps = async (ctx) => {
 
     const { slug } = ctx.query
 
-    const response = await API.get(`/items/audios/${slug}`)
+    const responseWP = await API.get(`/audios?slug=${slug}&_fields[]=title&_fields[]=acf&_fields[]=slug&_fields[]=id&per_page=10&page=1`);
 
-    if (response.status === 200 && response.data) {
-        const post = response.data.data as AudioObject
+    if (responseWP.data?.length > 0) {
+        const post = responseWP.data[0] as AudioObject;
         return { post }
     }
-    // const response = await API.get(`/posts?slugAudio=${slug}`)
-    // if (response.status === 200 && response.data.length > 0) {
-    //     const posts = response.data;
-    //     return { posts }
-    // }
 
     ctx.res.writeHead(301, { Location: '/' });
     ctx.res.end();

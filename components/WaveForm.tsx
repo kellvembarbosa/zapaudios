@@ -62,6 +62,10 @@ export default function Waveform({ url }) {
                 setPlay(false);
         });
 
+        wavesurfer.current.on('finish', function () {
+            setPlay(false);
+        });
+
         return () => wavesurfer.current.destroy();
     }, [url]);
 

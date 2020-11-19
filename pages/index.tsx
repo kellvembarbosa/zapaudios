@@ -8,10 +8,14 @@ import { down } from 'styled-breakpoints'
 import Axios from 'axios'
 
 function Home({ posts }) {
+  console.log('pos', posts)
   return (
     <Main>
       <GridContainer>
-        { posts && posts.length > 0 && posts.map(post => <Card key={post.id} itemJson={post} /> )}
+        { posts && posts.length > 0 && posts.map( post => {
+            console.log(post)
+            return (<Card key={post.id} itemJson={post} />)
+        })}
       </GridContainer>
     </Main>
   )
@@ -31,27 +35,12 @@ const GridContainer = styled.div`
 
 Home.getInitialProps = async (ctx) => {
 
-  // const response = await Axios.get('https://painel.spinui.com/api/content/zapaudios/audios/')
+  const responseWP = await API.get('/audios?_fields[]=title&_fields[]=acf&_fields[]=slug&_fields[]=id&per_page=10&page=1');
 
-  const response = await API.get('/items/audios')
-
-  if(response){
-    const posts = response.data.data
+  if(responseWP) {
+    const posts = responseWP.data;
     return { posts }
   }
-
-  //console.log("response ==>", JSON.stringify())
-
-  // if(response.status === 200 && response.data.total > 0) {
-  //   const posts = response.data.items
-  //   return { posts }
-  // }
-
-  // // const response = await API.get('/posts?_sort=created_at:DESC')
-  // if (response.status === 200 && response.data) {
-  //   const posts = response.data
-  //   return { posts }
-  // }
 
   return {}
 }

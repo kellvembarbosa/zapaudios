@@ -1,10 +1,8 @@
 import Axios from "axios";
-import DirectusSDK from "@directus/sdk-js";
 
 export const API = Axios.create({
-    baseURL: 'https://painel.zapaudios.com'
+    baseURL: 'https://api.zapaudios.com/wp-json/wp/v2',
 })
-
 // export const client = new DirectusSDK({
 //     url: "https://painel.zapaudios.com",
 //     project: "",
