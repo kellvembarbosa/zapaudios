@@ -1,22 +1,4 @@
 {
-  "../../components/WaveForm": [
-    {
-      "id": "./components/WaveForm.tsx",
-      "file": "static/chunks/1.js"
-    },
-    {
-      "id": "./node_modules/@babel/runtime/helpers/esm/defineProperty.js",
-      "file": "static/chunks/1.js"
-    },
-    {
-      "id": "./node_modules/react-icons/fa/index.esm.js",
-      "file": "static/chunks/1.js"
-    },
-    {
-      "id": "./node_modules/wavesurfer.js/dist/wavesurfer.js",
-      "file": "static/chunks/1.js"
-    }
-  ],
   "./dev/noop": [
     {
       "id": "./node_modules/next/dist/client/dev/noop.js",

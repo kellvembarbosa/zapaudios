@@ -24,6 +24,7 @@ export interface AudioObject {
     slug:  string;
     title: Title;
     acf:   Acf;
+    link: string;
 }
 
 export interface Acf {

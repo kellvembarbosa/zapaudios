@@ -1,11 +1,9 @@
 import React from 'react'
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 import Card from '../components/Card'
 import Main from '../components/layout/Main'
 import { API } from '../services/api'
 import styled from 'styled-components';
 import { down } from 'styled-breakpoints'
-import Axios from 'axios'
 
 function Home({ posts }) {
   console.log('pos', posts)
@@ -35,7 +33,7 @@ const GridContainer = styled.div`
 
 Home.getInitialProps = async (ctx) => {
 
-  const responseWP = await API.get('/audios?_fields[]=title&_fields[]=acf&_fields[]=slug&_fields[]=id&per_page=10&page=1');
+  const responseWP = await API.get(`/audios?_fields=title,acf,slug,id,link&per_page=10&page=1`);
 
   if(responseWP) {
     const posts = responseWP.data;
